@@ -6,17 +6,13 @@
 .x-gif__frames {
   display: inline-block;
   position: relative;
+}
 
-  @for $i from 0 to 100 {
-    &[data-frame="#{$i}"] {
-      .frame:nth-child(n + #{2 + $i}) {
-        opacity: 0;
-      }
-      .frame.disposal-restore:nth-child(#{1 + $i}) {
-        opacity: 1;
-      }
-    }
-  }
+#frames, .frame {
+  opacity: 0;
+}
+#frames, .frame:first-child {
+  opacity: 1;
 }
 
 .frame {
