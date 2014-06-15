@@ -55,18 +55,17 @@ Playback.prototype.scaleToFill = function () {
 Playback.prototype.setFrame = function (fraction, repeatCount) {
   var frameNr = (this.pingPong && repeatCount % 2 >= 1) ? this.gif.frameAt(1 - fraction) : this.gif.frameAt(fraction);
   var children = this.element.childNodes;
+  var previousFrameNr = Number(this.element.dataset['frame']);
 
-  if (frameNr == 0) {
-    // initialize
-    for (var i = 1; i < children.length; ++i) {
-      children[i].setAttribute("style", "opacity:0");
+  if (previousFrameNr < frameNr) {
+    for (var i = previousFrameNr + 1; i <= frameNr; ++i) {
+      children[i].setAttribute('style', 'opacity:1');
     }
-  } else if (frameNr + 1 < children.length) {
-    // pingPong
-    children[frameNr + 1].setAttribute("style", "opacity:0");
+  } else {
+    for (var i = frameNr + 1; i <= previousFrameNr; ++i) {
+      children[i].setAttribute('style', 'opacity:0');
+    }
   }
-  children[frameNr].setAttribute("style", "opacity:1");
-
   this.element.dataset['frame'] = frameNr;
 }
 

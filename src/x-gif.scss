@@ -8,13 +8,6 @@
   position: relative;
 }
 
-#frames, .frame {
-  opacity: 0;
-}
-#frames, .frame:first-child {
-  opacity: 1;
-}
-
 .frame {
   position: absolute;
   top: 0;
